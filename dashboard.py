@@ -9,7 +9,7 @@ import streamlit as st
 # FINRISK AI - STREAMLIT DASHBOARD
 # =========================================================
 
-API_URL = "http://127.0.0.1:8000"
+API_URL = "https://finrisk-ai-api.onrender.com"
 
 st.set_page_config(
     page_title="FinRisk AI | Risk Intelligence",
