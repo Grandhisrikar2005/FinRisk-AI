@@ -1,183 +1,151 @@
-# FinRisk AI — AI-Powered Financial Risk Analysis
+# 📊 FinRisk AI — Explainable Financial Risk Intelligence
 
-FinRisk AI is a prototype financial risk analysis dashboard that analyzes financial text, identifies potential risk signals, provides explainable results, and demonstrates risk-aware portfolio allocation.
+FinRisk AI is an AI-powered financial risk analysis prototype that analyzes financial text, identifies potential risk signals, estimates sentiment, and demonstrates risk-aware portfolio allocation through an interactive dashboard.
 
-The application combines a FastAPI backend with an interactive Streamlit dashboard to help users explore financial risk indicators through a simple interface.
+The project combines a **FastAPI backend**, **TF-IDF-based text similarity**, and a **Streamlit dashboard** to make financial text analysis and portfolio simulations accessible through a web application.
 
-## Key Features
+<p align="center">
+  <strong>Explainable Risk Analysis • Financial NLP • Portfolio Simulation</strong>
+</p>
 
-- **Financial Risk Analysis:** Identifies potential liquidity, credit, market, operational, and profitability risks in financial text.
-- **Explainable Results:** Displays detected risk categories and supporting evidence.
-- **Risk Scoring:** Calculates a heuristic risk score from detected signals and assigns a High, Moderate, or Low risk level.
-- **Sentiment Analysis:** Uses positive and negative keyword indicators to estimate the sentiment of financial text.
-- **Portfolio Allocation Simulation:** Compares baseline portfolio weights with simulated risk-aware allocations.
-- **Multi-Headline Comparison:** Analyzes and ranks multiple financial headlines.
-- **Evaluation Module:** Runs a small, hand-written test set to examine category-matching performance.
-- **Interactive Dashboard:** Presents risk metrics, evidence, sentiment, charts, and portfolio comparisons.
+## 🚀 Live Demo
 
-## Technology Stack
+- **Live Dashboard:** [Open FinRisk AI](https://finrisk-ai-bysrikar.streamlit.app/)
+- **GitHub Repository:** [FinRisk-AI](https://github.com/Grandhisrikar2005/FinRisk-AI)
+- **Backend API:** [FinRisk AI API](https://finrisk-ai-api.onrender.com)
+- **Interactive API Documentation:** [Explore API Docs](https://finrisk-ai-api.onrender.com/docs)
+- **Backend Health Check:** [Check Backend Health](https://finrisk-ai-api.onrender.com/health)
+
+## 🎯 Problem Statement
+
+Financial news and company announcements frequently contain information about liquidity pressure, credit exposure, market uncertainty, operational incidents, and profitability challenges.
+
+Manually identifying these signals across multiple headlines can be time-consuming. FinRisk AI demonstrates how text similarity techniques and rule-based indicators can help organize financial information into interpretable risk assessments.
+
+## 💡 Proposed Solution
+
+FinRisk AI accepts financial headlines, statements, or short text inputs and produces an experimental risk assessment. It also provides a portfolio allocation simulation and allows users to compare multiple financial headlines.
+
+The application emphasizes **explainability and transparency** by showing detected risk categories, matched reference phrases, heuristic scores, and system limitations.
+
+## ✨ Key Features
+
+### 1. Financial News Risk Analysis
+- Accepts custom financial text and predefined sample headlines.
+- Identifies potential liquidity, credit, market, operational, and profitability risk signals.
+- Generates a heuristic risk score from 0 to 100.
+- Assigns a High, Moderate, or Low risk level.
+
+### 2. Explainable Risk Evidence
+- Displays detected risk categories.
+- Shows matched reference phrases and text similarity values.
+- Provides a chart of similarity scores across detected categories.
+- Presents a recommended review action based on the backend analysis.
+
+### 3. Sentiment Estimation
+- Uses positive and negative keyword indicators.
+- Displays an estimated sentiment label.
+- Shows matched positive and negative terms to help users interpret the result.
+
+### 4. Tactical Portfolio Rebalancing Simulation
+- Compares baseline portfolio weights with simulated risk-aware allocations.
+- Displays equity, bonds, gold, and cash allocations.
+- Visualizes allocation changes in an interactive chart.
+- Checks whether simulated allocation weights total 100%.
+
+### 5. Multi-Headline Comparison
+- Analyzes multiple financial headlines in one request.
+- Compares heuristic risk scores and risk levels.
+- Displays a chart to help users compare the results.
+
+### 6. Evaluation and Smoke Tests
+- Runs a small, manually created evaluation set.
+- Displays category-matching results.
+- Provides a basic check of prototype behavior.
+
+## 🛠️ Technology Stack
 
 | Component | Technology |
 |---|---|
-| Programming language | Python |
-| Backend API | FastAPI |
-| API server | Uvicorn |
-| Text analysis | Scikit-learn |
-| Text similarity | TF-IDF and cosine similarity |
+| Programming Language | Python |
+| Backend Framework | FastAPI |
+| API Server | Uvicorn |
+| Text Feature Extraction | TF-IDF |
+| Text Similarity | Cosine Similarity |
+| Machine Learning Utilities | Scikit-learn |
 | Dashboard | Streamlit |
-| Data handling | Pandas |
-| Visualization | Plotly |
-| HTTP requests | Requests |
-| Data validation | Pydantic |
+| Data Processing | Pandas |
+| Data Visualization | Plotly |
+| HTTP Communication | Requests |
+| Data Validation | Pydantic |
+| Backend Hosting | Render |
+| Dashboard Hosting | Streamlit Community Cloud |
+| Version Control | Git and GitHub |
 
-## System Architecture
-
-```text
-       User enters financial text
-                  |
-                  v
-        Streamlit Dashboard
-                  |
-                  v
-           FastAPI Backend
-                  |
-                  v
-      Text Processing and Analysis
-                  |
-         +--------+---------+
-         |        |         |
-         v        v         v
-       Risk    Sentiment   Evidence
-     Detection  Analysis   Matching
-         |        |         |
-         +--------+---------+
-                  |
-                  v
-       Risk Score and Risk Level
-                  |
-                  v
-      Portfolio Allocation Simulation
-                  |
-                  v
-       Results, Charts and Insights
-```
-
-## Project Structure
+## 🏗️ System Architecture
 
 ```text
-FinRisk-AI/
-├── main.py
-├── dashboard.py
-├── requirements.txt
-└── README.md
+                 User
+                  |
+                  v
+       Streamlit Web Dashboard
+                  |
+          HTTPS API Requests
+                  |
+                  v
+          FastAPI Backend
+                  |
+                  v
+       Financial Text Processing
+                  |
+          +-------+-------+
+          |       |       |
+          v       v       v
+       TF-IDF  Keyword   Reference
+       Similarity Sentiment Phrases
+          |       |       |
+          +-------+-------+
+                  |
+                  v
+        Heuristic Risk Scoring
+                  |
+          +-------+-------+
+          |               |
+          v               v
+    Risk Assessment   Portfolio Simulation
+          |               |
+          +-------+-------+
+                  |
+                  v
+      Dashboard Results and Charts
 ```
 
-Other files and folders may be present depending on your local setup. Do not upload your virtual environment or temporary files.
+## ⚙️ How It Works
 
-## Installation and Setup
+### Step 1: Financial Text Input
+The user enters financial text or selects a predefined example from the dashboard.
 
-### Prerequisites
+### Step 2: Text Representation
+The backend uses TF-IDF representations to compare the input with a predefined collection of risk-related phrases.
 
-- Python 3.11 or a compatible Python version
-- pip
-- Git (for version control and GitHub upload)
+### Step 3: Risk Signal Detection
+Cosine similarity identifies text that resembles reference phrases associated with different financial risk categories.
 
-### 1. Clone the repository
+### Step 4: Heuristic Risk Scoring
+The backend calculates an experimental score based on detected similarity signals and maps it to a risk level.
 
-After uploading the project to GitHub, clone it using:
+### Step 5: Sentiment Estimation
+Positive and negative keyword matches are used to estimate the sentiment of the text.
 
-```bash
-git clone YOUR_GITHUB_REPOSITORY_URL
-cd FinRisk-AI
-```
+### Step 6: Portfolio Simulation
+The application demonstrates predefined portfolio allocation scenarios and compares baseline weights with simulated allocations.
 
-Alternatively, open your existing project directly in PyCharm.
+### Step 7: Visualization
+The Streamlit dashboard displays risk indicators, evidence, sentiment, comparison results, and allocation charts.
 
-### 2. Create and activate a virtual environment
+## 📈 Example Portfolio Allocation Scenarios
 
-**Windows:**
-
-```bash
-python -m venv .venv
-.venv\Scripts\activate
-```
-
-### 3. Install dependencies
-
-```bash
-python -m pip install -r requirements.txt
-```
-
-### 4. Start the backend
-
-Open a terminal in the project directory and run:
-
-```bash
-python -m uvicorn main:app --reload
-```
-
-The backend should be available at:
-
-- API: http://127.0.0.1:8000
-- Interactive API documentation: http://127.0.0.1:8000/docs
-- Health check: http://127.0.0.1:8000/health
-
-Keep this terminal running.
-
-### 5. Start the dashboard
-
-Open a second terminal in the same project directory. Activate the virtual environment if necessary, then run:
-
-```bash
-python -m streamlit run dashboard.py
-```
-
-Open the local URL displayed in the terminal, usually:
-
-http://localhost:8501
-
-## API Endpoints
-
-| Endpoint | Method | Purpose |
-|---|---|---|
-| `/` | GET | Provides basic API information |
-| `/health` | GET | Checks backend health |
-| `/analyze` | POST | Analyzes financial text and returns risk indicators |
-| `/portfolio` | GET | Returns simulated portfolio allocation information |
-| `/compare` | POST | Compares multiple financial text inputs |
-| `/evaluation` | GET | Runs the small evaluation test set |
-
-Use the interactive API documentation at `/docs` to inspect the available request schemas and responses.
-
-## How It Works
-
-### 1. Financial Text Input
-
-The user enters a financial headline, statement, or short description into the dashboard.
-
-### 2. Risk Signal Detection
-
-The backend uses TF-IDF text representations and cosine similarity to compare the input with predefined risk-related phrases. It identifies potential categories such as liquidity, credit, market, operational, and profitability risk.
-
-### 3. Risk Scoring
-
-The prototype calculates a heuristic score based on the strongest detected similarity signals and maps the score to a risk level.
-
-### 4. Sentiment Estimation
-
-Positive and negative keyword indicators are used to estimate sentiment.
-
-### 5. Portfolio Simulation
-
-The application demonstrates how a portfolio allocation might change according to a selected risk profile. It displays baseline and simulated allocations for equity, bonds, gold, and cash.
-
-### 6. Visualization
-
-The dashboard displays the analysis results, evidence, sentiment indicators, and allocation comparisons.
-
-## Portfolio Allocation Simulation
-
-The prototype demonstrates the following example allocations:
+The prototype demonstrates these illustrative allocation rules:
 
 | Asset | High Risk | Moderate Risk | Low Risk |
 |---|---:|---:|---:|
@@ -187,39 +155,140 @@ The prototype demonstrates the following example allocations:
 | Cash | 20% | 10% | 5% |
 | **Total** | **100%** | **100%** | **100%** |
 
-These allocations are illustrative simulation rules, not personalized investment recommendations.
+These scenarios demonstrate predefined allocation rules. They are not optimized using live market data or personalized investor information.
 
-## Evaluation
+## 🔌 Backend API Endpoints
 
-The evaluation module uses a small, manually created test set to check whether the text-analysis system matches expected risk categories.
+**Base URL:** https://finrisk-ai-api.onrender.com
 
-The reported category-match rate is a prototype evaluation metric. It should not be interpreted as proof of real-world financial forecasting accuracy or clinical-style predictive reliability.
+| Endpoint | Method | Purpose |
+|---|---|---|
+| `/` | GET | Basic API information |
+| `/health` | GET | Backend health check |
+| `/analyze` | POST | Analyze financial text |
+| `/portfolio` | GET | Retrieve simulated portfolio allocation |
+| `/compare` | POST | Compare multiple financial headlines |
+| `/evaluation` | GET | Run the small evaluation test set |
+| `/docs` | GET | Interactive API documentation |
 
-## Current Limitations
+Use the interactive API documentation to inspect request schemas and response formats.
 
-- Risk detection relies on predefined phrases and TF-IDF similarity rather than a trained financial forecasting model.
-- Sentiment analysis uses keyword-based heuristics rather than a dedicated, validated financial sentiment model.
-- Risk scores are heuristic indicators, not calibrated probabilities of financial loss.
-- Portfolio allocations are simulated and do not use live market data, current asset prices, or personalized investor information.
-- The evaluation set is small and manually created; larger, independently labeled datasets are required for meaningful validation.
+## 💻 Run Locally
 
-## Future Enhancements
+### Prerequisites
+- Python 3.11 or a compatible Python version
+- pip
+- Git (optional, for cloning the repository)
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/Grandhisrikar2005/FinRisk-AI.git
+cd FinRisk-AI
+```
+
+Alternatively, open your existing project folder in PyCharm.
+
+### 2. Create a Virtual Environment
+
+**Windows:**
+
+```bash
+python -m venv .venv
+.venv\Scripts\activate
+```
+
+### 3. Install Dependencies
+
+```bash
+python -m pip install -r requirements.txt
+```
+
+### 4. Start the FastAPI Backend
+
+Open a terminal in the project directory:
+
+```bash
+python -m uvicorn main:app --reload
+```
+
+The backend will normally be available at:
+
+- API: http://127.0.0.1:8000
+- API documentation: http://127.0.0.1:8000/docs
+- Health check: http://127.0.0.1:8000/health
+
+Keep the backend terminal running.
+
+### 5. Start the Streamlit Dashboard
+
+Open a second terminal in the same directory. Activate the virtual environment if necessary, then run:
+
+```bash
+python -m streamlit run dashboard.py
+```
+
+Open the local dashboard at:
+
+http://localhost:8501
+
+The current dashboard configuration uses the deployed Render API. For fully local development, change the API base URL in `dashboard.py` to `http://localhost:8000`.
+
+## 📁 Project Structure
+
+```text
+FinRisk-AI/
+├── main.py
+├── dashboard.py
+├── requirements.txt
+└── README.md
+```
+
+Additional configuration files may be present. The `.venv` directory is a local Python environment and should not be committed to GitHub.
+
+## 🧪 Evaluation
+
+The evaluation module runs a small, manually created set of examples to check whether the system identifies expected risk categories.
+
+The resulting category-match rate is an exploratory prototype metric. It does not establish generalization, calibrated risk probabilities, or real-world financial forecasting accuracy.
+
+Meaningful validation would require a larger, independently labeled dataset, a clearly defined evaluation protocol, and appropriate classification metrics.
+
+## ⚠️ Limitations
+
+- Risk detection uses TF-IDF similarity against predefined reference phrases.
+- Sentiment estimation is keyword-based and may miss context, negation, sarcasm, or financial nuance.
+- Risk scores are heuristic indicators, not probabilities of financial loss.
+- The system does not use live financial news feeds or real-time market data.
+- Portfolio allocations are simulated using predefined rules.
+- The evaluation dataset is small and manually created.
+- Results have not been validated for real-world financial decision-making.
+
+## 🔮 Future Enhancements
 
 - Integrate financial news APIs and real-time market data.
-- Explore domain-specific financial language models.
-- Train and evaluate risk-classification models on labeled financial datasets.
-- Improve sentiment analysis using financial NLP techniques.
+- Explore financial-domain language models for risk classification and sentiment analysis.
+- Train and validate models on labeled financial datasets.
 - Add historical risk tracking, alerts, and trend analysis.
-- Evaluate the system using larger datasets and appropriate classification metrics.
-- Add user authentication and persistent storage if required.
+- Expand evaluation with independent test data and standard metrics.
+- Add persistent storage and user authentication if needed.
+- Improve deployment monitoring and automated tests.
 
-## Disclaimer
+## 🔒 Disclaimer
 
-FinRisk AI is an educational and hackathon prototype. Its outputs are experimental and should not be used as the sole basis for financial, investment, lending, or risk-management decisions. The system does not provide guaranteed predictions or personalized financial advice.
+FinRisk AI is an educational and hackathon prototype. Its outputs are experimental and should not be used as the sole basis for investment, lending, or risk-management decisions.
 
-## Author
+The application does not provide guaranteed predictions or personalized financial advice. Portfolio allocations are illustrative simulations and are not recommendations to buy or sell financial assets.
+
+## 👨‍💻 Author
 
 **Grandhi Venkata Sai Srikar**
 
-- GitHub: https://github.com/Grandhisrikar2005
-- LinkedIn: https://www.linkedin.com/in/grandhi-venkata-sai-srikar
+- GitHub: [Grandhisrikar2005](https://github.com/Grandhisrikar2005)
+- LinkedIn: [Grandhi Venkata Sai Srikar](https://www.linkedin.com/in/grandhi-venkata-sai-srikar)
+
+---
+
+<p align="center">
+  Built as an experimental financial NLP and risk-analysis project.
+</p>
